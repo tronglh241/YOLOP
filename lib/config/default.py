@@ -5,8 +5,8 @@ from yacs.config import CfgNode as CN
 _C = CN()
 
 _C.LOG_DIR = 'runs/'
-_C.GPUS = (0,1)     
-_C.WORKERS = 8
+_C.GPUS = (0,)
+_C.WORKERS = 0
 _C.PIN_MEMORY = False
 _C.PRINT_FREQ = 20
 _C.AUTO_RESUME =False       # Resume from the last training interrupt
@@ -50,10 +50,10 @@ _C.LOSS.LL_IOU_GAIN = 0.2 # lane line iou loss gain
 
 # DATASET related params
 _C.DATASET = CN(new_allowed=True)
-_C.DATASET.DATAROOT = '/home/zwt/bdd/bdd100k/images/100k'       # the path of images folder
-_C.DATASET.LABELROOT = '/home/zwt/bdd/bdd100k/labels/100k'      # the path of det_annotations folder
-_C.DATASET.MASKROOT = '/home/zwt/bdd/bdd_seg_gt'                # the path of da_seg_annotations folder
-_C.DATASET.LANEROOT = '/home/zwt/bdd/bdd_lane_gt'               # the path of ll_seg_annotations folder
+_C.DATASET.DATAROOT = 'data/bdd100k/images/100k'       # the path of images folder
+_C.DATASET.LABELROOT = 'data/det_annotations'      # the path of det_annotations folder
+_C.DATASET.MASKROOT = 'data/da_seg_annotations'                # the path of da_seg_annotations folder
+_C.DATASET.LANEROOT = 'data/ll_seg_annotations'               # the path of ll_seg_annotations folder
 _C.DATASET.DATASET = 'BddDataset'
 _C.DATASET.TRAIN_SET = 'train'
 _C.DATASET.TEST_SET = 'val'
@@ -118,7 +118,7 @@ _C.TRAIN.PLOT = True                #
 
 # testing
 _C.TEST = CN(new_allowed=True)
-_C.TEST.BATCH_SIZE_PER_GPU = 24
+_C.TEST.BATCH_SIZE_PER_GPU = 1
 _C.TEST.MODEL_FILE = ''
 _C.TEST.SAVE_JSON = False
 _C.TEST.SAVE_TXT = False

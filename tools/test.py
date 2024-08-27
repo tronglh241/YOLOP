@@ -81,7 +81,8 @@ def main():
 
     # det_idx_range = [str(i) for i in range(0,25)]
     model_dict = model.state_dict()
-    checkpoint_file = args.weights
+    assert len(args.weights) == 1
+    checkpoint_file = args.weights[0]
     logger.info("=> loading checkpoint '{}'".format(checkpoint_file))
     checkpoint = torch.load(checkpoint_file)
     checkpoint_dict = checkpoint['state_dict']
@@ -94,7 +95,6 @@ def main():
     model.gr = 1.0
     model.nc = 1
     print('bulid model finished')
-
     print("begin to load data")
     # Data loading
     normalize = transforms.Normalize(
